@@ -1,0 +1,404 @@
+.quote-container {
+    position: absolute;
+    top: 50%; /* Adjust the top position as needed */
+    left: 30%; /* Adjust the left position as needed */
+    transform: translate(-50%, -50%); /* Center the GIF */
+    z-index: 10; /* Make sure it stays above other content */
+}
+
+.quote-container img {
+    width: 150px; /* Adjust the size of the GIF */
+    height: auto;
+}
+
+.hug-container {
+    position: absolute;
+    top: 60%;  /* This centers the GIF vertically */
+    left: 30%; /* This centers the GIF horizontally */
+    transform: translate(-50%, -50%); /* This adjusts the final position to be perfectly centered */
+    z-index: 10; /* Ensures the GIF is above other content */
+}
+
+.hug-container img {
+    width: 150px; /* Adjust the size of the GIF */
+    height: auto;
+}
+
+
+
+.line-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -10%;  /* Adjust the percentage to move the GIF up or down */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    z-index: 10; /* Make sure the GIF stays above the gallery */
+}
+.gallery {
+    --d: 10s;
+    display: grid;
+    place-items: center;
+    width: 220px;
+    position: absolute;
+    top: 55%; /* Adjust this so the gallery appears below the GIF */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Make sure the gallery stays below the GIF */
+}
+
+  
+  .gallery > img {
+    grid-area: 1/1;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 10px solid #f2f2f2;
+    box-shadow: 0 0 4px #0007;
+    z-index: 2;
+    animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+  }
+  
+  .gallery img:last-child {
+    animation-name: slide, z-order-last;
+  }
+  
+  .gallery > img:nth-child(1) {
+    animation-delay: calc(0*var(--d));
+    --r: 16deg;
+  }
+  
+  .gallery > img:nth-child(2) {
+    animation-delay: calc(-0.2*var(--d));
+    --r: -1deg;
+  }
+  
+  .gallery > img:nth-child(3) {
+    animation-delay: calc(-0.4*var(--d));
+    --r: -19deg;
+  }
+  
+  .gallery > img:nth-child(4) {
+    animation-delay: calc(-0.6*var(--d));
+    --r: 6deg;
+  }
+  
+  .gallery > img:nth-child(5) {
+    animation-delay: calc(-0.8*var(--d));
+    --r: -8deg;
+  }
+  
+  @keyframes slide {
+    10% {
+      transform: translateX(120%) rotate(var(--r));
+    }
+    0%, 100%, 20% {
+      transform: translateX(0%) rotate(var(--r));
+    }
+  }
+  
+  @keyframes z-order {
+    10%, 20% {
+      z-index: 1;
+    }
+    80% {
+      z-index: 2;
+    }
+  }
+  
+  @keyframes z-order-last {
+    10%, 20% {
+      z-index: 1;
+    }
+    90% {
+      z-index: 2;
+    }
+  }
+  
+  /* Centered Spotify Embed at the Top */
+  .spotify-container {
+      position: absolute;
+      top: 10px;  /* Adjust this value for spacing from the top */
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      width: 300px;  /* Adjust width as needed */
+      z-index: 1000;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 12px;
+  }
+  
+  .spotify-container iframe {
+      width: 100%;
+      height: 80px;
+  }
+  
+  /* Love List Container */
+  .love-list {
+      position: absolute; /* Ensures it stays on the right */
+      top: 50%; /* Centers vertically */
+      transform: translateY(-50%); /* Adjusts for perfect centering */
+      width: 300px;
+      height: 300px;
+      right: 20px; /* Positioned on the right side */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      color: #95a3a4;
+  }
+    
+  /* Title Styling */
+  .love-list h2 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #B7D1DA; /* Pinkish color */
+      text-align: center;
+      margin-bottom: 10px; /* Space between title and list */
+  }
+    
+  /* Scrolling Container */
+  .scrolling-container {
+      width: 100%;
+      height: calc(100% - 40px); /* Subtract space for the title and margin */
+      overflow: hidden;
+  }
+    
+  /* List Styling */
+  .love-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      animation: scroll-list 10s linear infinite;
+  }
+    
+  .love-list li {
+      padding: 10px;
+      text-align: center;
+  }
+    
+  /* Scrolling Animation */
+  @keyframes scroll-list {
+      0% {
+        transform: translateY(0%);
+      }
+      100% {
+        transform: translateY(-50%);
+      }
+  }
+  
+  #background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2; /* Push video further back */
+}
+ /* Countdown Container */
+
+ 
+.countdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Wrap each countdown box and love note */
+.countdown-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Countdown Box */
+.countdown-box {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: url('love.png') no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Love Note */
+.love-note {
+    font-family: 'Cherry Bomb One', sans-serif; 
+    color: #fff;
+    position: absolute;
+    left: 120px; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.356);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+/* Show Love Note on Hover */
+.countdown-item:hover .love-note {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(10px);
+}
+
+/* Float effect on hover */
+.countdown-item:hover .countdown-box {
+    transform: translateY(-10px);
+}
+
+
+  /* Centered "Happy Birthday Love " Below Spotify */
+
+  #shine {
+    font-family: 'Jersey 15', sans-serif;
+    font-size: 60px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: rgba(182, 231, 142, 0.8);
+    text-align: center;
+    z-index: 999;
+    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+    -webkit-background-size: 150px;
+    -webkit-background-clip: text;
+    -webkit-animation-name: shine;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    text-shadow: 0 0px 10px rgba(255, 247, 0, 0.5);
+}
+
+#shine a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease-in-out;
+    padding: 2px;
+}
+
+#shine a:hover {
+    color: #ffcc00;
+    text-shadow: 0 0 20px #ffcc00;
+}
+
+@-webkit-keyframes shine {
+    0%, 10% {
+      background-position: -1000px;
+    }
+    20% {
+      background-position: top left;
+    }
+    90% {
+      background-position: top right;
+    }
+    100% {
+      background-position: 1000px;
+    }
+}
+
+.birthday-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gif-container img {
+    width: 80px;
+    height: auto;
+}
+
+.love-title {
+    font-family: 'Barriecito', cursive;     display: flex;
+    align-items: center;
+    gap: 10px; /* Adjusts spacing between elements */
+}
+
+.love-title h2 {
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold;
+    color: #fff; /* Change color if needed */
+}
+
+.love-gif {
+    width: 50px; /* Adjust size as needed */
+    height: auto; /* Maintains aspect ratio */
+}
+
+  
+  /* 📱 Responsive Adjustments */
+  @media only screen and (max-width: 768px) { /* Tablets */
+    .gallery {
+      width: 180px;
+      margin-left: 15px;
+    }
+  
+    .love-list {
+      width: 250px;
+      height: 250px;
+      right: 10px;
+    }
+  
+    .love-list h2 {
+      font-size: 18px;
+    }
+  
+    #shine {
+      font-size: 40px;
+      top: 80px;
+    }
+  
+    
+  }
+  
+  @media only screen and (max-width: 600px) { /* Mobile */
+    #shine {
+      font-size: 22px;
+      top: 70px;
+    }
+  
+    #hedlinecontainer {
+      margin-bottom: 40px;
+    }
+  
+    .gallery {
+      width: 150px;
+      margin-left: 60px;
+    }
+  
+    .love-list {
+      width: 200px;
+      height: 200px;
+      right: 5px;
+    }
+  
+    .love-list h2 {
+      font-size: 16px;
+    }
+  
+    .love-list li {
+      font-size: 14px;
+    }
+  
+  
+  }
+  
